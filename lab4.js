@@ -139,9 +139,12 @@
           div.transition()
             .duration(200)
             .style("opacity", .9);
-          div.html(d.location + "<br/>" + numberWithCommas(d["pop_mlns"]*1000000))
+          div.html(d.location + " in " + d["time"] + "<br/>" + numberWithCommas(d["pop_mlns"]*1000000) 
+            + "<br/>" + "Life Expectancy: " + d["life_expectancy"] 
+            + "<br/>" + "Fertility Rate: " + d["fertility_rate"])
             .style("left", (d3.event.pageX) + "px")
             .style("top", (d3.event.pageY - 28) + "px");
+            //.style("top", (d3.event.pageY - 28) + "px");
         })
         .on("mouseout", (d) => {
           div.transition()
@@ -220,34 +223,6 @@
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
-
-//   function makeDropDown(csvData) {
-//     var dropDown = d3.select("#filter").append("select")
-//             .attr("name", "country");
-
-//     var options = dropDown.selectAll("option")
-//             .data(data)
-//             .enter()
-//             .append("option");
- 
-//     options.text(function (d) { return d.country; })
-//         .attr("value", function (d) { return d.country; });
-
-//   dropDown.on("change", function() {
-//         var selected = this.value;
-//         var displayOthers = this.checked ? "inline" : "none";
-//         var display = this.checked ? "none" : "inline";
-  
-//         svgContainer.selectAll("circle")
-//             .filter(function(d) {return selected != d.country;})
-//             .attr("display", displayOthers);
-            
-//         svgContainer.selectAll("circle")
-//             .filter(function(d) {return selected == d.country;})
-//             .attr("display", display);
-//         });
-
-//   }
 
   function makeYearDropDown(csvData) {
     var dropDown = d3.select("#year").append("select")
